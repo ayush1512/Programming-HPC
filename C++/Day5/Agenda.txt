@@ -1,0 +1,21 @@
+- Function pointers
+- Callback -> Function pointers
+- Type inference
+- Lambda Expression
+- Restrict heap object creation
+- Check object is on heap & stack
+- Smart pointers -> Memory Mgmt
+- Exception Handling
+    - how to throw & handle Exception
+    - multiple catch block
+    - catch any block
+    - set_terminate function 
+    - custom exception
+- Patterns
+    - Memento
+    - Observer
+    - Iterator
+    - Composite
+    - Command
+- Sync v/s Async function calls
+- Pointers to class members

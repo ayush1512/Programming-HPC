@@ -1,0 +1,22 @@
+- Friend Keyword
+- Friend Function
+    - example
+    - complex example
+    - private from 2 diff classes
+    - as member function of other class
+- Friend class
+    - example
+    - inheritance example
+- Operators
+    - different Operators
+- Operators which cannot be Overloaded
+- Operator Overloading
+    - unary ++, --
+    - binary +,-
+    - relation ==
+    - assignment =
+    - stream insertion << & stream extraction >>
+    - func call ()
+- cascade with << 
+- copy & swap idioms with =
+- conversion int()
