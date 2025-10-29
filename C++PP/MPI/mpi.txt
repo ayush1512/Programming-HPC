@@ -1,0 +1,12 @@
+module load openmpi/4.1.1
+export OMPI_MCA_btl=tcp
+mpicc -o hello m1_mpi.c
+mpiexec -np 4 ./a.out
+
+
+Assignements
+
+1. Write a MPI program to print host name an send message from process with rank 0 to all other
+A3: Write a MPI program to calculate the total number of prime between 1 to 100
+numbers  between 1 and 1,00,00,000.
+
