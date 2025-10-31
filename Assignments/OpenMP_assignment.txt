@@ -1,0 +1,12 @@
+OpenMP
+1.	Write OpenMP program that creates 10 tasks. Each task should print the thread number of the calling thread.
+Change the number of threads using omp_set_num_threads() or OMP_NUM_THREADS
+2.	Write a parallel program to find sum of an array	
+
+Remove reduction and see what happens (Hint: data race).
+Use omp_get_thread_num() to print which thread handles which iterations.
+
+3.	Write an Openmp program to compute PI
+
+4. 	Write a program for Matrix and vector multiplication.
+

@@ -1,3 +1,0 @@
-/Users/ayush1512/Documents/GitHub/Programming-HPC/C++PP/OpenMPTest/build/CMakeFiles/OpenMPTest.dir
-/Users/ayush1512/Documents/GitHub/Programming-HPC/C++PP/OpenMPTest/build/CMakeFiles/edit_cache.dir
-/Users/ayush1512/Documents/GitHub/Programming-HPC/C++PP/OpenMPTest/build/CMakeFiles/rebuild_cache.dir
