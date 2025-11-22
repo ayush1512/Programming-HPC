@@ -1,0 +1,10 @@
+OpenMP Day2:        https://drive.google.com/file/d/1HhwANIFQGuM-4ODULxFYiAA0DLr1mqxk/view?usp=sharing
+OpenMP Day3:        https://drive.google.com/file/d/1FZdUnJkeR0_7gfwDH3JyBPnMYXM8-Xed/view?usp=sharing
+MPI Session:        https://drive.google.com/file/d/1DzCfli9e7wwPXd4VUpD2zhRAr4xbnwzI/view?usp=sharing
+Debugger Session:   https://drive.google.com/file/d/1ndktI-3FOOYBAsHZDDo2tZy2-7m5xRhP/view?usp=sharing
+SYCL Session:       https://drive.google.com/file/d/1imv5mgiHxj7SmoPaAHQ5UQYvfhD58QKA/view?usp=sharing
+OpenACC Session:    https://drive.google.com/file/d/1B4jp28uQ6SUL0asMeeb3ESgWUfFHjUxo/view?usp=sharing
+03 OCT 2025 : CUDA : https://drive.google.com/file/d/1e8nx72txh-3P4GMH0FbQV9nRFH916rYZ/view?usp=sharing
+04 OCT 2025 : CUDA : https://drive.google.com/file/d/1Pe5Fpc8PEkuUbFYnl7J5r0N3MoMwnlV0/view?usp=sharing
+06 OCT 2025 : CUDA : https://drive.google.com/file/d/1ldcPmbHF_dB25TCK0sCLSzOVhnJmjESf/view?usp=sharing
+07 OCT 2025 : CUDA : https://drive.google.com/file/d/1SuRCMC-hmCOrtj9cpsiCET3Om61QM0RX/view?usp=sharing

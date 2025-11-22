@@ -1,0 +1,18 @@
+C & C++
+GCC / G++ => nvcc
+GDB
+
+
+// Self-Practice-Assignments:
+
+1. Write C & C++ multithreading code and debug using gdb. ( toggle between threads)
+2. Write C & C++ multiprocessing code and debug using gdb.  ( toggle between processes).
+3. Make the environment ready for nvcc (in google colab).
+4. Make the environment ready for nvcc (in your login of CDAC super-computer).
+
+
+
+
+
+
+// for evaluation : Assignments:
