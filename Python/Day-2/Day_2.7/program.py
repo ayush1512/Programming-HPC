@@ -45,7 +45,7 @@ class StudentManager:
         filteredStudents=filter(self.students, key=lambda s: s.Name.startswith(nsw))
         return filteredStudents
 
-sm=StudentManager()5
+sm=StudentManager()
 choice=0
 while(choice!=6):
     print("-------Student Adminstration----------")
