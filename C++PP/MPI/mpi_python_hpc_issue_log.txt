@@ -1,0 +1,146 @@
+MPI / Python HPC Debug Log
+Cluster: Param Utkarsh
+Scheduler: SLURM
+MPI: OpenMPI 4.1.1
+
+------------------------------------------------------------
+1) MPI Job Failed – NonZeroExitCode
+------------------------------------------------------------
+Symptom:
+- JobState=FAILED
+- ExitCode=1:0
+- Runtime = 00:00:00
+
+Cause:
+- MPI runtime error during startup
+- UCX shared memory transport failure
+
+Fix:
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=tcp,self
+
+Result:
+Job completed successfully.
+
+------------------------------------------------------------
+2) UCX Shared Memory Errors
+------------------------------------------------------------
+Symptom:
+UCX ERROR mm_posix.c
+Shared memory error
+
+Cause:
+- Cluster security restrictions blocked shared-memory transport.
+
+Fix:
+Forced TCP transport:
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=tcp,self
+
+------------------------------------------------------------
+3) Python SyntaxError (f-string)
+------------------------------------------------------------
+Symptom:
+SyntaxError: invalid syntax
+
+Cause:
+- Python 2 interpreter used
+- f-strings require Python >= 3.6
+
+Fix:
+- Loaded Python 3 module
+OR
+- Replaced f-string with .format()
+
+------------------------------------------------------------
+4) mpi4py Cannot Load MPI Library
+------------------------------------------------------------
+Symptom:
+RuntimeError: cannot load MPI library
+
+Cause:
+- Conda Python used with system OpenMPI
+- MPI ABI mismatch
+
+Fix:
+module purge
+module load openmpi
+module load python
+pip install --user mpi4py
+
+------------------------------------------------------------
+5) NumPy Import Errors (multiarray)
+------------------------------------------------------------
+Symptom:
+ImportError: dynamic module does not define module export function
+
+Cause:
+- Python 2 NumPy loaded with Python 3
+- Python version mismatch (3.4 module vs 3.8 interpreter)
+
+Fix:
+- Load matching Python + NumPy module
+OR
+- Install NumPy locally for correct Python version
+
+------------------------------------------------------------
+6) ORTE Daemon Launch Failure
+------------------------------------------------------------
+Symptom:
+ORTE daemon has unexpectedly failed after launch
+
+Cause:
+- OpenMPI selected wrong network interface
+- No route between nodes
+- Wrong NIC (lo, virbr0) used
+
+Fix:
+Restricted interface (Ethernet example):
+export OMPI_MCA_oob_tcp_if_include=enp25s0f0
+
+Restricted interface (Infiniband example):
+export OMPI_MCA_oob_tcp_if_include=ib0
+
+Excluded loopback:
+export OMPI_MCA_btl_tcp_if_exclude=lo,virbr0
+export OMPI_MCA_oob_tcp_if_exclude=lo,virbr0
+
+------------------------------------------------------------
+7) Load Imbalance in Parallel QuickSort
+------------------------------------------------------------
+Symptom:
+- Some ranks high CPU
+- Some ranks idle
+
+Cause:
+- Pivot chosen only from rank 0
+- Only 2–3 ranks used
+
+Fix:
+- Global median pivot selection
+- Switched to MPI Merge Sort (balanced)
+
+------------------------------------------------------------
+Final Stable SLURM Configuration
+------------------------------------------------------------
+module purge
+module load openmpi
+module load python/3.8
+
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=tcp,self
+export OMPI_MCA_oob_tcp_if_include=enp25s0f0
+export OMPI_MCA_btl_tcp_if_exclude=lo,virbr0
+export OMPI_MCA_oob_tcp_if_exclude=lo,virbr0
+
+srun python program.py
+
+------------------------------------------------------------
+Lessons Learned
+------------------------------------------------------------
+- Do not mix Python versions and compiled NumPy modules
+- Do not mix Conda MPI with system OpenMPI
+- Always verify 'which python'
+- Use srun inside SLURM
+- Restrict OpenMPI network interface when ORTE fails
+- Avoid pivot-based imbalance in parallel QuickSort

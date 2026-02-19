@@ -1,0 +1,71 @@
+MPI Job Execution – Issue & Resolution Log
+
+System Information
+------------------
+Cluster        : Param Utkarsh (CDAC)
+Scheduler      : SLURM
+Partition      : standard
+Nodes Used     : 4
+Tasks          : 160 (40 per node)
+MPI Library    : OpenMPI (UCX-enabled)
+Application    : MPI (CPU-only)
+
+Issue 1: Job Failed with NonZeroExitCode
+---------------------------------------
+Symptoms:
+- JobState=FAILED
+- Reason=NonZeroExitCode
+- ExitCode=1:0
+- Runtime was 00:00:00
+
+Root Cause:
+- MPI runtime failure at startup, not related to SLURM allocation.
+
+Fix:
+- Investigated SLURM output and error logs.
+- Verified resource allocation and execution command.
+
+Issue 2: All MPI Ranks Printed Zero Output
+------------------------------------------
+Symptoms:
+- All 160 MPI ranks printed identical output (00000 0).
+- No rank-dependent behavior observed.
+
+Root Cause:
+- MPI processes launched but inter-process communication failed.
+- Reduction operations did not function correctly.
+
+Fix:
+- Verified MPI code logic.
+- Ensured correct compilation and execution of the MPI binary.
+
+Issue 3: UCX Shared Memory Transport Errors
+-------------------------------------------
+Symptoms:
+- Repeated UCX errors:
+  UCX ERROR mm_posix.c: open(/proc/.../fd/..) failed
+  UCX ERROR mm_ep.c: Shared memory error
+
+Root Cause:
+- UCX shared-memory transport (mm/posix) blocked by cluster security restrictions.
+- MPI ranks could not establish shared-memory communication.
+
+Final Resolution
+----------------
+Disabled UCX shared-memory transport and forced TCP-based MPI communication:
+
+export OMPI_MCA_pml=ob1
+export OMPI_MCA_btl=tcp,self
+
+Result:
+- UCX errors resolved.
+- MPI communication restored.
+- MPI_Reduce produced correct results.
+- Job completed successfully.
+
+Lessons Learned
+---------------
+- Identical MPI output across ranks can indicate communication failure.
+- UCX shared memory may not work on secured HPC clusters.
+- TCP-based MPI transport is more reliable in restricted environments.
+- Always check SLURM error logs for MPI runtime issues.
